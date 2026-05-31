@@ -7,8 +7,6 @@
 
   <title>Birthday Letter</title>
 
-  <!-- FONTS -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link rel="preconnect"
@@ -75,14 +73,16 @@
     .sub{
       color:#b8925f;
 
-      letter-spacing:4px;
+      letter-spacing:2px;
       font-size:15px;
 
       margin-bottom:45px;
 
-      transition:0.4s ease;
+      transition:0.3s ease;
 
       font-family:'Inter', sans-serif;
+
+      min-height:20px;
     }
 
     @keyframes floating {
@@ -546,8 +546,8 @@
       }
 
       .seal{
-      width:80px;
-      height:80px;
+        width:80px;
+        height:80px;
       }
 
       .card{
@@ -555,7 +555,7 @@
       }
 
       .card h2{
-        font-size:25px;
+        font-size:27px;
       }
 
       .to{
@@ -604,17 +604,25 @@
       and memories that stay close to your heart.
       </p>
 
-      <p>I hope the person beside you
+      <p>
+      I hope the person beside you
       understands the kind of heart you have.
       I hope he'll protect your smile,
       stay during your difficult days,
       and love you in the ways you deserve.
       </p>
 
-      <p>Thank you for existing.<br/>And thank you for being you.</p>
+      <p>
+      Thank you for existing.<br/>
+      And thank you for being you.
+      </p>
 
-      <p>Happy Birthday!<br/><br/>Wishing you happiness,good health, and wonderful life ahead.</p>
-
+      <p>
+      Happy Birthday!<br/><br/>
+      Wishing you happiness,
+      good health,
+      and wonderful life ahead.
+      </p>
 
     `;
 
@@ -630,7 +638,7 @@
     </h1>
 
     <div class="sub" id="subText">
-      HOLD TO UNSEAL
+      Hold to unseal
     </div>
 
     <div class="envelope-wrapper" id="wrapper">
@@ -700,18 +708,50 @@
 
     let holdTimer;
 
+    let teaseTimeout;
+
+    let failAttempts = 0;
+
+    let isFakeFailing = false;
+
+    const teaseMessages = [
+      "Press harder, dont you go to gym?",
+      "you said gym girl… this is what you got?",
+      "Where the strength? waste of protein shake.."
+    ];
+
+    const shuffledTeases =
+      teaseMessages.sort(() => Math.random() - 0.5);
+
     function startHold(){
+
+      clearInterval(holdTimer);
+
+      clearTimeout(teaseTimeout);
+
+      isFakeFailing = false;
 
       progressValue = 0;
 
-      subText.innerText =
-        "ALMOST THERE...";
+      if(failAttempts < 3){
+
+        subText.innerText =
+          "Almost there...";
+
+      } else {
+
+        subText.innerText =
+          "Hold to unseal";
+      }
 
       envelope.classList.add("holding");
 
       holdTimer = setInterval(() => {
 
         progressValue++;
+
+        let maxProgress =
+          failAttempts < 3 ? 92 : 100;
 
         const glow =
           progressValue * 0.6;
@@ -730,9 +770,43 @@
           circumference -
           (circumference * progressValue) / 100;
 
-        if(progressValue >= 100){
+        if(progressValue >= maxProgress){
 
           clearInterval(holdTimer);
+
+          // fake fail first 3 attempts
+          if(failAttempts < 3){
+
+            isFakeFailing = true;
+
+            envelope.classList.remove("holding");
+
+            envelope.style.boxShadow =
+              "0 20px 45px rgba(0,0,0,0.55)";
+
+            progressValue = 0;
+
+            percent.innerText = "0%";
+
+            progress.style.strokeDashoffset =
+              circumference;
+
+            subText.innerText =
+              shuffledTeases[failAttempts];
+
+            failAttempts++;
+
+            teaseTimeout = setTimeout(() => {
+
+              subText.innerText =
+                "Try again..";
+
+              isFakeFailing = false;
+
+            }, 2500);
+
+            return;
+          }
 
           wrapper.classList.add("open");
 
@@ -862,17 +936,25 @@
       envelope.style.boxShadow =
         "0 20px 45px rgba(0,0,0,0.55)";
 
+      // prevent touchend bug
+      if(isFakeFailing){
+        return;
+      }
+
       if(progressValue < 100){
 
         progressValue = 0;
 
         percent.innerText = "0%";
 
-        subText.innerText =
-          "HOLD TO UNSEAL";
-
         progress.style.strokeDashoffset =
           circumference;
+
+        if(failAttempts >= 3){
+
+          subText.innerText =
+            "Hold to unseal";
+        }
       }
     }
 
