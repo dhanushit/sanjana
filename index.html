@@ -1,595 +1,594 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Birthday Letter</title>
 
-  <title>Birthday Letter</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
 
-  <style>
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+                -webkit-user-select: none;
+                user-select: none;
+            }
 
-      -webkit-tap-highlight-color:transparent;
-      -webkit-touch-callout:none;
+            *::-webkit-scrollbar {
+                display: none;
+            }
 
-      -webkit-user-select:none;
-      user-select:none;
-    }
+            html {
+                scrollbar-width: none;
+            }
 
-    *::-webkit-scrollbar{
-      display:none;
-    }
+            body {
+                min-height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
 
-    html{
-      scrollbar-width:none;
-    }
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-    body{
-      min-height:100vh;
-      overflow-x:hidden;
-      overflow-y:auto;
+                font-family: "Cormorant Garamond", serif;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+                background: radial-gradient(circle at top, #2b0000 0%, #080000 75%);
+            }
 
-      font-family:'Cormorant Garamond', serif;
+            .container {
+                text-align: center;
+            }
 
-      background:
-      radial-gradient(circle at top,
-      #2b0000 0%,
-      #080000 75%);
-    }
+            h1 {
+                color: white;
 
-    .container{
-      text-align:center;
-    }
+                font-size: 62px;
+                font-weight: 500;
 
-    h1{
-      color:white;
+                margin-bottom: 20px;
 
-      font-size:62px;
-      font-weight:500;
+                letter-spacing: 1px;
+            }
 
-      margin-bottom:20px;
+            .sub {
+                color: #b8925f;
 
-      letter-spacing:1px;
-    }
+                letter-spacing: 2px;
+                font-size: 15px;
 
-    .sub{
-      color:#b8925f;
+                margin-right: 5px;
+                margin-left: 5px;
+                margin-bottom: 45px;
 
-      letter-spacing:2px;
-      font-size:15px;
+                transition: 0.3s ease;
 
-      margin-right:5px;
-      margin-left:5px;
-      margin-bottom:45px;
+                font-family: "Inter", sans-serif;
 
-      transition:0.3s ease;
+                min-height: 20px;
+            }
 
-      font-family:'Inter', sans-serif;
+            @keyframes floating {
+                0% {
+                    transform: translateY(0px);
+                }
 
-      min-height:20px;
-    }
+                50% {
+                    transform: translateY(-10px);
+                }
 
-    @keyframes floating {
+                100% {
+                    transform: translateY(0px);
+                }
+            }
 
-      0%{
-        transform:translateY(0px);
-      }
+            .envelope-wrapper {
+                width: 430px;
+                height: 270px;
 
-      50%{
-        transform:translateY(-10px);
-      }
+                position: relative;
+                margin: auto;
 
-      100%{
-        transform:translateY(0px);
-      }
-    }
+                cursor: pointer;
 
-    .envelope-wrapper{
-      width:430px;
-      height:270px;
+                perspective: 1200px;
 
-      position:relative;
-      margin:auto;
+                animation: floating 3s ease-in-out infinite;
 
-      cursor:pointer;
+                touch-action: manipulation;
+            }
 
-      perspective:1200px;
+            .envelope {
+                width: 100%;
+                height: 100%;
 
-      animation:floating 3s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
 
-      touch-action:manipulation;
-    }
+                border-radius: 14px;
 
-    .envelope{
-      width:100%;
-      height:100%;
+                background: #ece4d7;
 
-      position:relative;
-      overflow:hidden;
+                box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
 
-      border-radius:14px;
+                transition:
+                    box-shadow 0.15s linear,
+                    transform 0.15s linear;
+            }
 
-      background:#ece4d7;
+            .envelope.holding {
+                box-shadow:
+                    0 0 20px rgba(255, 190, 70, 0.2),
+                    0 0 40px rgba(255, 190, 70, 0.25),
+                    0 0 70px rgba(255, 190, 70, 0.3),
+                    0 20px 45px rgba(0, 0, 0, 0.55);
+            }
 
-      box-shadow:
-      0 20px 45px rgba(0,0,0,0.55);
+            .envelope::before {
+                content: "";
 
-      transition:
-      box-shadow 0.15s linear,
-      transform 0.15s linear;
-    }
+                position: absolute;
+                inset: 0;
 
-    .envelope.holding{
+                background: #efe8dc;
 
-      box-shadow:
+                clip-path: polygon(0 100%, 0 35%, 50% 70%, 100% 35%, 100% 100%);
 
-      0 0 20px rgba(255,190,70,0.20),
-      0 0 40px rgba(255,190,70,0.25),
-      0 0 70px rgba(255,190,70,0.30),
+                z-index: 1;
+            }
 
-      0 20px 45px rgba(0,0,0,0.55);
-    }
+            .flap {
+                position: absolute;
 
-    .envelope::before{
-      content:"";
+                width: 100%;
+                height: 100%;
 
-      position:absolute;
-      inset:0;
+                top: 0;
+                left: 0;
 
-      background:#efe8dc;
+                transform-origin: top;
 
-      clip-path:polygon(
-        0 100%,
-        0 35%,
-        50% 70%,
-        100% 35%,
-        100% 100%
-      );
+                transition: 1.2s ease;
 
-      z-index:1;
-    }
+                z-index: 5;
+            }
 
-    .flap{
-      position:absolute;
+            .flap::before {
+                content: "";
 
-      width:100%;
-      height:100%;
+                position: absolute;
+                top: 0;
+                left: 0;
 
-      top:0;
-      left:0;
+                width: 100%;
+                height: 52%;
 
-      transform-origin:top;
+                background: #e2dbcf;
 
-      transition:1.2s ease;
+                clip-path: polygon(0 0, 100% 0, 50% 100%);
 
-      z-index:5;
-    }
+                box-shadow: inset 0 -8px 12px rgba(0, 0, 0, 0.08);
+            }
 
-    .flap::before{
-      content:"";
+            .letter {
+                position: absolute;
 
-      position:absolute;
-      top:0;
-      left:0;
+                width: 88%;
+                height: 84%;
 
-      width:100%;
-      height:52%;
+                left: 6%;
+                bottom: -100%;
 
-      background:#e2dbcf;
+                background: white;
 
-      clip-path:polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
+                border-radius: 8px;
 
-      box-shadow:
-      inset 0 -8px 12px rgba(0,0,0,0.08);
-    }
+                z-index: 2;
+            }
 
-    .letter{
-      position:absolute;
+            .seal {
+                position: absolute;
 
-      width:88%;
-      height:84%;
+                width: 95px;
+                height: 95px;
 
-      left:6%;
-      bottom:-100%;
+                border-radius: 50%;
 
-      background:white;
+                background: radial-gradient(circle at top, #ff3a3a, #850000);
 
-      border-radius:8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-      z-index:2;
-    }
+                left: 50%;
+                top: 50%;
 
-    .seal{
-      position:absolute;
+                transform: translate(-50%, -50%);
 
-      width:95px;
-      height:95px;
+                z-index: 10;
 
-      border-radius:50%;
+                box-shadow:
+                    inset 0 4px 12px rgba(255, 255, 255, 0.25),
+                    0 6px 20px rgba(0, 0, 0, 0.55);
 
-      background:
-      radial-gradient(circle at top,
-      #ff3a3a,
-      #850000);
+                transition: 0.6s ease;
+            }
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+            .seal span {
+                font-size: 42px;
+                color: #500000;
+            }
 
-      left:50%;
-      top:50%;
+            .open .flap {
+                transform: rotateX(180deg);
+            }
 
-      transform:translate(-50%, -50%);
+            .open .seal {
+                opacity: 0;
 
-      z-index:10;
+                transform: translate(-50%, -50%) scale(0);
+            }
 
-      box-shadow:
-      inset 0 4px 12px rgba(255,255,255,0.25),
-      0 6px 20px rgba(0,0,0,0.55);
+            @keyframes openEnvelope {
+                0% {
+                    transform: scale(1) rotateX(0deg);
+                    opacity: 1;
+                }
 
-      transition:0.6s ease;
-    }
+                40% {
+                    transform: scale(1.08) rotateX(-10deg);
+                }
 
-    .seal span{
-      font-size:42px;
-      color:#500000;
-    }
+                100% {
+                    transform: scale(1.4) rotateX(-25deg);
+                    opacity: 0;
+                }
+            }
 
-    .open .flap{
-      transform:rotateX(180deg);
-    }
+            .animate-open {
+                animation: openEnvelope 1s ease forwards;
+            }
 
-    .open .seal{
-      opacity:0;
+            .progress-ring {
+                width: 95px;
+                height: 95px;
 
-      transform:
-      translate(-50%, -50%)
-      scale(0);
-    }
+                margin: 50px auto 0;
 
-    @keyframes openEnvelope {
+                position: relative;
+            }
 
-      0%{
-        transform:scale(1) rotateX(0deg);
-        opacity:1;
-      }
+            svg {
+                transform: rotate(-90deg);
+            }
 
-      40%{
-        transform:scale(1.08) rotateX(-10deg);
-      }
+            .progress-bg {
+                fill: none;
 
-      100%{
-        transform:scale(1.4) rotateX(-25deg);
-        opacity:0;
-      }
-    }
+                stroke: #2b1b1b;
+                stroke-width: 8;
+            }
 
-    .animate-open{
-      animation:openEnvelope 1s ease forwards;
-    }
+            .progress {
+                fill: none;
 
-    .progress-ring{
-      width:95px;
-      height:95px;
+                stroke: #d9a441;
+                stroke-width: 8;
 
-      margin:50px auto 0;
+                stroke-linecap: round;
 
-      position:relative;
-    }
+                stroke-dasharray: 251;
+                stroke-dashoffset: 251;
 
-    svg{
-      transform:rotate(-90deg);
-    }
+                transition: stroke-dashoffset 0.1s linear;
+            }
 
-    .progress-bg{
-      fill:none;
+            .percentage {
+                position: absolute;
 
-      stroke:#2b1b1b;
-      stroke-width:8;
-    }
+                top: 50%;
+                left: 50%;
 
-    .progress{
-      fill:none;
+                transform: translate(-50%, -50%);
 
-      stroke:#d9a441;
-      stroke-width:8;
+                color: #d6a35f;
+                font-size: 18px;
 
-      stroke-linecap:round;
+                font-family: "Inter", sans-serif;
+            }
 
-      stroke-dasharray:251;
-      stroke-dashoffset:251;
+            .message-screen {
+                width: 100%;
+                min-height: 100vh;
+                margin: 30px auto;
+                overflow: auto;
 
-      transition:stroke-dashoffset 0.1s linear;
-    }
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
 
-    .percentage{
-      position:absolute;
+                background: radial-gradient(circle at top, #2b0000 0%, #080000 75%);
+            }
 
-      top:50%;
-      left:50%;
+            .card {
+                width: 700px;
+                max-width: 92%;
+                color: white;
+                position: relative;
+                animation: fadeUp 1s ease;
 
-      transform:translate(-50%, -50%);
+                background: linear-gradient(180deg, #1a0909, #140707);
+                border: 1px solid rgba(188, 121, 70, 0.25);
+                border-radius: 18px;
+                padding: 28px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+                margin-bottom: 22px;
+                overflow: hidden;
+            }
 
-      color:#d6a35f;
-      font-size:18px;
+            .card h2 {
+                text-align: center;
 
-      font-family:'Inter', sans-serif;
-    }
+                font-size: 38px;
 
-    .message-screen{
-      width:100%;
-      min-height:100vh;
-      margin:30px auto;
-      overflow:auto;
+                margin-bottom: 20px;
 
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
+                font-weight: 500;
 
-      background:
-      radial-gradient(circle at top,
-      #2b0000 0%,
-      #080000 75%);
-    }
+                line-height: 1.1;
 
-    .card{
-      width:700px;
-      max-width:92%;
+                letter-spacing: -0.5px;
+            }
 
-      padding:34px 42px 28px;
+            .sendback {
+                width: 100%;
+                padding: 18px;
+                border: none;
+                border-radius: 14px;
+                background: #a92a2a;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                font-weight: 100;
+            }
+            .sendback:hover {
+                background: #bb3232;
+            }
 
-      border-radius:30px;
+            .card:before {
+                content: "";
+                position: absolute;
+                right: -50px;
+                top: -50px;
+                width: 140px;
+                height: 140px;
+                background: rgb(129 32 32 / 8%);
+                border-radius: 50%;
+            }
 
-      background:
-      linear-gradient(
-      145deg,
-      rgba(20,0,0,0.95),
-      rgba(10,0,0,0.92));
+            .quote-top {
+                position: absolute;
 
-      border:1px solid rgba(255,120,120,0.12);
+                top: 18px;
+                left: 22px;
 
-      color:white;
+                font-size: 42px;
+                line-height: 1;
 
-      position:relative;
+                color: #a97a4c;
 
-      box-shadow:
-      0 20px 60px rgba(0,0,0,0.6);
+                opacity: 0.45;
+            }
 
-      animation:fadeUp 1s ease;
-    }
+            .quote-bottom {
+                position: absolute;
 
-    .card h2{
-      text-align:center;
+                bottom: 6px;
+                right: 18px;
 
-      font-size:38px;
+                font-size: 42px;
+                line-height: 1;
 
-      margin-bottom:20px;
+                color: #a97a4c;
 
-      font-weight:500;
+                opacity: 0.45;
+            }
 
-      line-height:1.1;
+            .message-content {
+                position: relative;
 
-      letter-spacing:-0.5px;
-    }
+                padding: 6px 0 8px;
 
-    .quote-top{
-      position:absolute;
+                line-height: 1.3;
+            }
 
-      top:18px;
-      left:22px;
+            .to {
+                font-size: 24px;
 
-      font-size:42px;
-      line-height:1;
+                font-weight: 500;
 
-      color:#a97a4c;
+                margin-bottom: 30px;
 
-      opacity:0.45;
-    }
+                position: relative;
+                z-index: 2;
+            }
 
-    .quote-bottom{
-      position:absolute;
+            .to p {
+                margin-bottom: 22px;
+            }
 
-      bottom:6px;
-      right:18px;
+            .to p:last-child {
+                margin-bottom: 0;
+            }
 
-      font-size:42px;
-      line-height:1;
+            .from {
+                text-align: right;
 
-      color:#a97a4c;
+                color: #a97a4c;
 
-      opacity:0.45;
-    }
+                font-style: italic;
 
-    .message-content{
-      position:relative;
+                font-size: 20px;
 
-      padding:6px 0 8px;
+                margin-bottom: 0;
 
-      line-height:1.3;
-    }
+                position: relative;
+                z-index: 2;
+            }
 
-    .to{
-      font-size:24px;
+            .made-by {
+                margin-top: 18px;
+                color: #a97a4c;
+                font-size: 14px;
+                font-family: "Inter", sans-serif;
+                opacity: 0.5;
+            }
 
-      font-weight:500;
+            .feel-section {
+                margin-top: 34px;
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
 
-      margin-bottom:30px;
+            .reaction-title {
+                color: #8d6a47;
+                font-size: 16px;
+                text-align: center;
+                letter-spacing: 1.5px;
+            }
 
-      position:relative;
-      z-index:2;
-    }
+            .reactions {
+                display: flex;
+                justify-content: center;
 
-    .to p{
-      margin-bottom:22px;
-    }
+                gap: 18px;
 
-    .to p:last-child{
-      margin-bottom:0;
-    }
+                margin-top: 22px;
+            }
 
-    .from{
-      text-align:right;
+            .reaction {
+                width: 62px;
+                height: 62px;
 
-      color:#a97a4c;
+                border-radius: 50%;
+                border: none;
 
-      font-style:italic;
+                background: rgba(255, 255, 255, 0.08);
 
-      font-size:20px;
+                font-size: 28px;
 
-      margin-bottom:0;
+                cursor: pointer;
 
-      position:relative;
-      z-index:2;
-    }
+                transition: 0.3s ease;
 
-    .made-by{
-      margin-top:18px;
-      color:#a97a4c;
-      font-size:14px;
-      font-family:'Inter', sans-serif;
-      opacity:0.5;
-    }
+                backdrop-filter: blur(10px);
+            }
 
-    .feel-section{
-      margin-top:34px;
-      margin-bottom:10px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
+            .reaction:hover {
+                transform: scale(1.08);
 
-    .reaction-title{
-      color:#8d6a47;
-      font-size:16px;
-      text-align:center;
-      letter-spacing:1.5px;
-    }
+                background: rgba(255, 255, 255, 0.15);
+            }
 
-    .reactions{
-      display:flex;
-      justify-content:center;
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
 
-      gap:18px;
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-      margin-top:22px;
-    }
+            @media (max-width: 600px) {
+                h1 {
+                    font-size: 40px;
+                }
 
-    .reaction{
-      width:62px;
-      height:62px;
+                .envelope-wrapper {
+                    width: 290px;
+                    height: 190px;
+                }
 
-      border-radius:50%;
-      border:none;
+                .seal {
+                    width: 80px;
+                    height: 80px;
+                }
 
-      background:rgba(255,255,255,0.08);
+                .card {
+                    padding: 28px;
+                }
 
-      font-size:28px;
+                .card h2 {
+                    font-size: 27px;
+                }
 
-      cursor:pointer;
+                .to {
+                    font-size: 20px;
+                }
 
-      transition:0.3s ease;
+                .from {
+                    font-size: 16px;
+                }
 
-      backdrop-filter:blur(10px);
-    }
+                .quote-top,
+                .quote-bottom {
+                    font-size: 34px;
+                }
 
-    .reaction:hover{
-      transform:scale(1.08);
+                .reaction {
+                    width: 54px;
+                    height: 54px;
 
-      background:
-      rgba(255,255,255,0.15);
-    }
+                    font-size: 24px;
+                }
+            }
 
-    @keyframes fadeUp {
+            .heart {
+                width: 72px;
+                height: 72px;
+                margin: auto;
+                border-radius: 50%;
+                background: radial-gradient(circle, #ef4545, #8d0000);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 34px;
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.35);
+                margin-bottom: 24px;
+            }
 
-      from{
-        opacity:0;
-        transform:translateY(50px);
-      }
+            .sub {
+                color: #87664b;
+                margin-bottom: 28px;
+            }
+        </style>
+    </head>
 
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @media(max-width:600px){
-
-      h1{
-        font-size:40px;
-      }
-
-      .envelope-wrapper{
-        width:290px;
-        height:190px;
-      }
-
-      .seal{
-        width:80px;
-        height:80px;
-      }
-
-      .card{
-        padding:28px;
-      }
-
-      .card h2{
-        font-size:27px;
-      }
-
-      .to{
-        font-size:20px;
-      }
-
-      .from{
-        font-size:16px;
-      }
-
-      .quote-top,
-      .quote-bottom{
-        font-size:34px;
-      }
-
-      .reaction{
-        width:54px;
-        height:54px;
-
-        font-size:24px;
-      }
-    }
-
-  </style>
-
-</head>
-
-<body>
-
-  <script>
-
-    const birthdayMessage = `
+    <body>
+        <script>
+            const birthdayMessage = `
 
       <p>No matter how life changes, today is still a day worth celebrating, because it's the day you came into this world. </p>
 
@@ -624,199 +623,141 @@
 
     `;
 
-    const fromMessage =
-      "— from Dhanush";
+            const fromMessage = "— from Dhanush";
+        </script>
 
-  </script>
+        <div class="container">
+            <h1>A Letter For You</h1>
 
-  <div class="container">
+            <div class="sub" id="subText">Hold to unseal</div>
 
-    <h1>
-      A Letter For You
-    </h1>
+            <div class="envelope-wrapper" id="wrapper">
+                <div class="envelope" id="envelope">
+                    <div class="flap"></div>
 
-    <div class="sub" id="subText">
-      Hold to unseal
-    </div>
+                    <div class="letter"></div>
 
-    <div class="envelope-wrapper" id="wrapper">
+                    <div class="seal">
+                        <span>♡</span>
+                    </div>
+                </div>
+            </div>
 
-      <div class="envelope" id="envelope">
+            <div class="progress-ring">
+                <svg width="95" height="95">
+                    <circle class="progress-bg" cx="47.5" cy="47.5" r="40"></circle>
 
-        <div class="flap"></div>
+                    <circle class="progress" cx="47.5" cy="47.5" r="40"></circle>
+                </svg>
 
-        <div class="letter"></div>
-
-        <div class="seal">
-          <span>♡</span>
+                <div class="percentage" id="percent">0%</div>
+            </div>
         </div>
 
-      </div>
+        <script>
+            const wrapper = document.getElementById("wrapper");
 
-    </div>
+            const envelope = document.getElementById("envelope");
 
-    <div class="progress-ring">
+            const progress = document.querySelector(".progress");
 
-      <svg width="95" height="95">
+            const percent = document.getElementById("percent");
 
-        <circle
-          class="progress-bg"
-          cx="47.5"
-          cy="47.5"
-          r="40">
-        </circle>
+            const subText = document.getElementById("subText");
 
-        <circle
-          class="progress"
-          cx="47.5"
-          cy="47.5"
-          r="40">
-        </circle>
+            const circumference = 251;
 
-      </svg>
+            let progressValue = 0;
 
-      <div class="percentage" id="percent">
-        0%
-      </div>
+            let holdTimer;
 
-    </div>
+            let teaseTimeout;
 
-  </div>
+            let failAttempts = 0;
 
-  <script>
+            let isFakeFailing = false;
 
-    const wrapper =
-      document.getElementById("wrapper");
+            const teaseMessages = [
+                "Press harder, dont you go to gym?",
+                "you said gym girl… this is what you got?",
+                "Where is the strength? waste of protein shake..",
+            ];
 
-    const envelope =
-      document.getElementById("envelope");
+            const shuffledTeases = teaseMessages.sort(() => Math.random() - 0.5);
 
-    const progress =
-      document.querySelector(".progress");
+            function startHold() {
+                clearInterval(holdTimer);
 
-    const percent =
-      document.getElementById("percent");
+                clearTimeout(teaseTimeout);
 
-    const subText =
-      document.getElementById("subText");
+                isFakeFailing = false;
 
-    const circumference = 251;
+                progressValue = 0;
 
-    let progressValue = 0;
+                if (failAttempts < 3) {
+                    subText.innerText = "Almost there...";
+                } else {
+                    subText.innerText = "Hold to unseal";
+                }
 
-    let holdTimer;
+                envelope.classList.add("holding");
 
-    let teaseTimeout;
+                holdTimer = setInterval(() => {
+                    progressValue++;
 
-    let failAttempts = 0;
+                    let maxProgress = failAttempts < 3 ? 92 : 100;
 
-    let isFakeFailing = false;
+                    const glow = progressValue * 0.6;
 
-    const teaseMessages = [
-      "Press harder, dont you go to gym?",
-      "you said gym girl… this is what you got?",
-      "Where is the strength? waste of protein shake.."
-    ];
-
-    const shuffledTeases =
-      teaseMessages.sort(() => Math.random() - 0.5);
-
-    function startHold(){
-
-      clearInterval(holdTimer);
-
-      clearTimeout(teaseTimeout);
-
-      isFakeFailing = false;
-
-      progressValue = 0;
-
-      if(failAttempts < 3){
-
-        subText.innerText =
-          "Almost there...";
-
-      } else {
-
-        subText.innerText =
-          "Hold to unseal";
-      }
-
-      envelope.classList.add("holding");
-
-      holdTimer = setInterval(() => {
-
-        progressValue++;
-
-        let maxProgress =
-          failAttempts < 3 ? 92 : 100;
-
-        const glow =
-          progressValue * 0.6;
-
-        envelope.style.boxShadow = `
+                    envelope.style.boxShadow = `
           0 0 ${glow}px rgba(255,190,70,0.25),
           0 0 ${glow * 1.8}px rgba(255,190,70,0.30),
           0 0 ${glow * 3}px rgba(255,190,70,0.35),
           0 20px 45px rgba(0,0,0,0.55)
         `;
 
-        percent.innerText =
-          progressValue + "%";
+                    percent.innerText = progressValue + "%";
 
-        progress.style.strokeDashoffset =
-          circumference -
-          (circumference * progressValue) / 100;
+                    progress.style.strokeDashoffset = circumference - (circumference * progressValue) / 100;
 
-        if(progressValue >= maxProgress){
+                    if (progressValue >= maxProgress) {
+                        clearInterval(holdTimer);
 
-          clearInterval(holdTimer);
+                        // fake fail first 3 attempts
+                        if (failAttempts < 3) {
+                            isFakeFailing = true;
 
-          // fake fail first 3 attempts
-          if(failAttempts < 3){
+                            envelope.classList.remove("holding");
 
-            isFakeFailing = true;
+                            envelope.style.boxShadow = "0 20px 45px rgba(0,0,0,0.55)";
 
-            envelope.classList.remove("holding");
+                            progressValue = 0;
 
-            envelope.style.boxShadow =
-              "0 20px 45px rgba(0,0,0,0.55)";
+                            percent.innerText = "0%";
 
-            progressValue = 0;
+                            progress.style.strokeDashoffset = circumference;
 
-            percent.innerText = "0%";
+                            subText.innerText = shuffledTeases[failAttempts];
 
-            progress.style.strokeDashoffset =
-              circumference;
+                            failAttempts++;
 
-            subText.innerText =
-              shuffledTeases[failAttempts];
+                            teaseTimeout = setTimeout(() => {
+                                subText.innerText = "Try again..";
 
-            failAttempts++;
+                                isFakeFailing = false;
+                            }, 2800);
 
-            teaseTimeout = setTimeout(() => {
+                            return;
+                        }
 
-              subText.innerText =
-                "Try again..";
+                        wrapper.classList.add("open");
 
-              isFakeFailing = false;
+                        setTimeout(() => {
+                            wrapper.classList.add("animate-open");
+                        }, 400);
 
-            }, 2800);
-
-            return;
-          }
-
-          wrapper.classList.add("open");
-
-          setTimeout(() => {
-
-            wrapper.classList.add("animate-open");
-
-          }, 400);
-
-          setTimeout(() => {
-
-            document.body.innerHTML = `
+                        setTimeout(() => {
+                            document.body.innerHTML = `
 
             <div class="message-screen">
 
@@ -850,35 +791,24 @@
                   how did this make you feel?
                 </div>
 
-                <div class="reactions">
-
-                  <button 
-                    class="reaction"
-                    data-reaction="❤️">
-                    ❤️
-                  </button>
-
-                  <button
-                    class="reaction"
-                    data-reaction="😍">
-                    😍
-                  </button>
-
-                  <button
-                    class="reaction"
-                    data-reaction="🥰">
-                    🥰
-                  </button>
-
-                  <button
-                    class="reaction"
-                    data-reaction="🥺">
-                    🥺
-                  </button>
-
-                </div>
+                 
 
               </div>
+
+              <div class="card cta">
+
+<div class="heart">♡</div>
+
+<h2>Waiting for your reply</h2>
+
+<div class="sub">
+Write something back — only if you wish so
+</div>
+
+<button class="sendback">💬&nbsp;&nbsp;Send a Message Back</button>
+
+
+</div>
 
               <p class="made-by">
                 Made with ❤️ by Dhanush
@@ -888,108 +818,84 @@
 
             `;
 
-            setTimeout(() => {
+                            setTimeout(() => {
+                                const reactions = document.querySelectorAll(".reaction");
 
-              const reactions =
-                document.querySelectorAll(".reaction");
+                                reactions.forEach((button) => {
+                                    button.addEventListener("click", () => {
+                                        const reaction = button.dataset.reaction;
 
-              reactions.forEach((button) => {
+                                        const phone = "919902256120";
 
-                button.addEventListener("click", () => {
+                                        const text = encodeURIComponent(`${reaction}`);
 
-                  const reaction =
-                    button.dataset.reaction;
+                                        const url = `https://wa.me/${phone}?text=${text}`;
 
-                  const phone =
-                    "919902256120";
+                                        window.open(url, "_blank");
+                                    });
+                                });
 
-                  const text =
-                    encodeURIComponent(
-                      `${reaction}`
-                    );
+                                const sendBackBtn = document.querySelector(".sendback");
 
-                  const url =
-                    `https://wa.me/${phone}?text=${text}`;
+                                sendBackBtn.addEventListener("click", () => {
+                                    const phone = "919902256120"; // Your WhatsApp number
 
-                  window.open(url, "_blank");
+                                    window.open("https://wa.me/919902256120", "_blank");
+                                });
+                            }, 100);
+                        }, 1700);
+                    }
+                }, 22);
+            }
 
-                });
+            function stopHold() {
+                clearInterval(holdTimer);
 
-              });
+                envelope.classList.remove("holding");
 
-            }, 100);
+                envelope.style.boxShadow = "0 20px 45px rgba(0,0,0,0.55)";
 
-          }, 1700);
-        }
+                // prevent touchend bug
+                if (isFakeFailing) {
+                    return;
+                }
 
-      }, 22);
-    }
+                if (progressValue < 100) {
+                    progressValue = 0;
 
-    function stopHold(){
+                    percent.innerText = "0%";
 
-      clearInterval(holdTimer);
+                    progress.style.strokeDashoffset = circumference;
 
-      envelope.classList.remove("holding");
+                    if (failAttempts >= 3) {
+                        subText.innerText = "Hold to unseal";
+                    }
+                }
+            }
 
-      envelope.style.boxShadow =
-        "0 20px 45px rgba(0,0,0,0.55)";
+            wrapper.addEventListener("mousedown", startHold);
 
-      // prevent touchend bug
-      if(isFakeFailing){
-        return;
-      }
+            wrapper.addEventListener("mouseup", stopHold);
 
-      if(progressValue < 100){
+            wrapper.addEventListener("mouseleave", stopHold);
 
-        progressValue = 0;
+            wrapper.addEventListener(
+                "touchstart",
+                (e) => {
+                    e.preventDefault();
+                    startHold();
+                },
+                { passive: false }
+            );
 
-        percent.innerText = "0%";
-
-        progress.style.strokeDashoffset =
-          circumference;
-
-        if(failAttempts >= 3){
-
-          subText.innerText =
-            "Hold to unseal";
-        }
-      }
-    }
-
-    wrapper.addEventListener(
-      "mousedown",
-      startHold
-    );
-
-    wrapper.addEventListener(
-      "mouseup",
-      stopHold
-    );
-
-    wrapper.addEventListener(
-      "mouseleave",
-      stopHold
-    );
-
-    wrapper.addEventListener(
-      "touchstart",
-      (e) => {
-        e.preventDefault();
-        startHold();
-      },
-      { passive:false }
-    );
-
-    wrapper.addEventListener(
-      "touchend",
-      (e) => {
-        e.preventDefault();
-        stopHold();
-      },
-      { passive:false }
-    );
-
-  </script>
-
-</body>
+            wrapper.addEventListener(
+                "touchend",
+                (e) => {
+                    e.preventDefault();
+                    stopHold();
+                },
+                { passive: false }
+            );
+        </script>
+    </body>
 </html>
