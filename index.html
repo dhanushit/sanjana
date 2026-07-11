@@ -583,6 +583,339 @@
                 color: #87664b;
                 margin-bottom: 28px;
             }
+
+            /* DIGITAL BOUQUET */
+            .bouquet-section {
+                width: 700px;
+                max-width: 92%;
+                min-height: 560px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 30px;
+                background:
+                    radial-gradient(circle at 50% 20%, rgba(133, 24, 24, 0.25), transparent 45%),
+                    linear-gradient(180deg, #1a0909, #100404);
+                border: 1px solid rgba(188, 121, 70, 0.25);
+                border-radius: 18px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            }
+
+            .bouquet-intro {
+                text-align: center;
+                padding: 45px 25px;
+                transition: opacity 0.7s ease, transform 0.7s ease;
+            }
+
+            .bouquet-intro.hide {
+                opacity: 0;
+                transform: translateY(-25px) scale(0.95);
+                pointer-events: none;
+            }
+
+            .tiny-heart {
+                width: 70px;
+                height: 70px;
+                margin: 0 auto 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-size: 34px;
+                color: #f1c9a5;
+                background: radial-gradient(circle, #b52b2b, #680000);
+                box-shadow:
+                    0 0 20px rgba(255, 50, 50, 0.25),
+                    0 0 50px rgba(255, 0, 0, 0.15);
+            }
+
+            .bouquet-intro h2 {
+                color: white;
+                font-size: 38px;
+                font-weight: 500;
+                margin-bottom: 18px;
+            }
+
+            .bouquet-intro p {
+                color: #a98360;
+                font-size: 20px;
+                line-height: 1.5;
+                margin-bottom: 30px;
+            }
+
+            .bouquet-button {
+                padding: 16px 25px;
+                border: 1px solid rgba(217, 164, 65, 0.35);
+                border-radius: 30px;
+                background: rgba(169, 42, 42, 0.3);
+                color: #f5dfc6;
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                cursor: pointer;
+                transition: 0.3s ease;
+            }
+
+            .bouquet-button:hover {
+                transform: translateY(-3px);
+                background: rgba(169, 42, 42, 0.55);
+                box-shadow: 0 10px 30px rgba(169, 42, 42, 0.25);
+            }
+
+            .digital-bouquet {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transform: scale(0.7);
+                pointer-events: none;
+                transition:
+                    opacity 1s ease,
+                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .digital-bouquet.show {
+                opacity: 1;
+                transform: scale(1);
+                pointer-events: auto;
+            }
+
+            .bouquet-glow {
+                position: absolute;
+                width: 350px;
+                height: 350px;
+                top: 10px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(205, 54, 54, 0.22), transparent 70%);
+                filter: blur(15px);
+                animation: bouquetGlow 3s ease-in-out infinite;
+            }
+
+            @keyframes bouquetGlow {
+                0%, 100% {
+                    opacity: 0.5;
+                    transform: scale(0.9);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            }
+
+            .flowers {
+                width: 300px;
+                height: 210px;
+                position: relative;
+                z-index: 4;
+                transform: translateY(-65px);
+            }
+
+            .flower {
+                width: 75px;
+                height: 75px;
+                position: absolute;
+                transform: scale(0);
+            }
+
+            .digital-bouquet.show .flower {
+                animation: flowerBloom 0.8s ease forwards;
+            }
+
+            .digital-bouquet.show .flower-1 { animation-delay: 0.2s; }
+            .digital-bouquet.show .flower-2 { animation-delay: 0.4s; }
+            .digital-bouquet.show .flower-3 { animation-delay: 0.6s; }
+            .digital-bouquet.show .flower-4 { animation-delay: 0.8s; }
+            .digital-bouquet.show .flower-5 { animation-delay: 1s; }
+
+            @keyframes flowerBloom {
+                0% {
+                    transform: scale(0) rotate(-20deg);
+                }
+                70% {
+                    transform: scale(1.15) rotate(5deg);
+                }
+                100% {
+                    transform: scale(1) rotate(0);
+                }
+            }
+
+            .flower-1 { left: 20px; top: 85px; }
+            .flower-2 { left: 65px; top: 25px; }
+            .flower-3 { left: 115px; top: 70px; }
+            .flower-4 { left: 165px; top: 20px; }
+            .flower-5 { left: 210px; top: 85px; }
+
+            .petal {
+                width: 34px;
+                height: 42px;
+                position: absolute;
+                left: 20px;
+                top: 7px;
+                transform-origin: 17px 31px;
+                border-radius: 50% 50% 45% 45%;
+                background: linear-gradient(180deg, #ef7777, #a71f32);
+                box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.15);
+            }
+
+            .flower:nth-child(2) .petal,
+            .flower:nth-child(4) .petal {
+                background: linear-gradient(180deg, #f3b6a0, #c45862);
+            }
+
+            .flower:nth-child(3) .petal {
+                background: linear-gradient(180deg, #dba4c8, #8f416e);
+            }
+
+            .p1 { transform: rotate(0deg) translateY(-13px); }
+            .p2 { transform: rotate(72deg) translateY(-13px); }
+            .p3 { transform: rotate(144deg) translateY(-13px); }
+            .p4 { transform: rotate(216deg) translateY(-13px); }
+            .p5 { transform: rotate(288deg) translateY(-13px); }
+
+            .flower-center {
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                left: 27px;
+                top: 27px;
+                z-index: 5;
+                border-radius: 50%;
+                background: radial-gradient(circle, #f4d27c, #b97825);
+                box-shadow: 0 0 10px rgba(244, 210, 124, 0.4);
+            }
+
+            .stems {
+                width: 190px;
+                height: 130px;
+                position: absolute;
+                top: 205px;
+                z-index: 2;
+            }
+
+            .stems span {
+                width: 3px;
+                height: 150px;
+                position: absolute;
+                left: 50%;
+                top: -30px;
+                background: linear-gradient(#527347, #243d24);
+                transform-origin: bottom;
+            }
+
+            .stems span:nth-child(1) { transform: rotate(-25deg); }
+            .stems span:nth-child(2) { transform: rotate(-13deg); }
+            .stems span:nth-child(3) { transform: rotate(0); }
+            .stems span:nth-child(4) { transform: rotate(13deg); }
+            .stems span:nth-child(5) { transform: rotate(25deg); }
+
+            .bouquet-wrap {
+                width: 210px;
+                height: 150px;
+                position: absolute;
+                top: 260px;
+                z-index: 3;
+            }
+
+            .wrap-left,
+            .wrap-right {
+                width: 130px;
+                height: 150px;
+                position: absolute;
+                top: 0;
+                background: linear-gradient(145deg, #d8b891, #8f6547);
+                box-shadow: inset 0 0 20px rgba(70, 30, 15, 0.2);
+            }
+
+            .wrap-left {
+                left: 4px;
+                clip-path: polygon(0 0, 100% 30%, 70% 100%);
+            }
+
+            .wrap-right {
+                right: 4px;
+                clip-path: polygon(100% 0, 0 30%, 30% 100%);
+            }
+
+            .ribbon {
+                width: 48px;
+                height: 48px;
+                position: absolute;
+                top: 340px;
+                z-index: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: #eac9a8;
+                font-size: 24px;
+                background: radial-gradient(circle, #b32d2d, #6f0000);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            }
+
+            .bouquet-message {
+                position: absolute;
+                bottom: 18px;
+                z-index: 7;
+                text-align: center;
+                opacity: 0;
+                transform: translateY(20px);
+                transition:
+                    opacity 1s ease 1.5s,
+                    transform 1s ease 1.5s;
+            }
+
+            .digital-bouquet.show .bouquet-message {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .bouquet-message h2 {
+                color: white;
+                font-size: 27px;
+                font-weight: 500;
+                margin-bottom: 7px;
+            }
+
+            .bouquet-message p {
+                color: #a98360;
+                font-size: 17px;
+                line-height: 1.3;
+                margin-bottom: 7px;
+            }
+
+            .bouquet-message span {
+                color: #c99364;
+                font-size: 16px;
+                font-style: italic;
+            }
+
+            @media (max-width: 600px) {
+                .bouquet-section {
+                    min-height: 560px;
+                }
+
+                .bouquet-intro h2 {
+                    font-size: 29px;
+                }
+
+                .bouquet-intro p {
+                    font-size: 18px;
+                }
+
+                .digital-bouquet {
+                    transform: scale(0.7);
+                }
+
+                .digital-bouquet.show {
+                    transform: scale(0.9);
+                }
+            }
+
         </style>
     </head>
 
@@ -688,42 +1021,23 @@
             let progressValue = 0;
 
             let holdTimer;
-
-            let teaseTimeout;
-
-            let failAttempts = 0;
-
-            let isFakeFailing = false;
-
-            const teaseMessages = [
-                "Press harder, dont you go to gym?",
-                "you said gym girl… this is what you got?",
-                "Where is the strength? waste of protein shake..",
-            ];
-
-            const shuffledTeases = teaseMessages.sort(() => Math.random() - 0.5);
-
-            function startHold() {
+function startHold() {
                 clearInterval(holdTimer);
 
-                clearTimeout(teaseTimeout);
+                
 
-                isFakeFailing = false;
+                
 
                 progressValue = 0;
 
-                if (failAttempts < 3) {
-                    subText.innerText = "Almost there...";
-                } else {
-                    subText.innerText = "Hold to unseal";
-                }
+                subText.innerText = "Almost there...";
 
                 envelope.classList.add("holding");
 
                 holdTimer = setInterval(() => {
                     progressValue++;
 
-                    let maxProgress = failAttempts < 3 ? 92 : 100;
+                    let maxProgress = 100;
 
                     const glow = progressValue * 0.6;
 
@@ -740,33 +1054,6 @@
 
                     if (progressValue >= maxProgress) {
                         clearInterval(holdTimer);
-
-                        // fake fail first 3 attempts
-                        if (failAttempts < 3) {
-                            isFakeFailing = true;
-
-                            envelope.classList.remove("holding");
-
-                            envelope.style.boxShadow = "0 20px 45px rgba(0,0,0,0.55)";
-
-                            progressValue = 0;
-
-                            percent.innerText = "0%";
-
-                            progress.style.strokeDashoffset = circumference;
-
-                            subText.innerText = shuffledTeases[failAttempts];
-
-                            failAttempts++;
-
-                            teaseTimeout = setTimeout(() => {
-                                subText.innerText = "Try again..";
-
-                                isFakeFailing = false;
-                            }, 2800);
-
-                            return;
-                        }
 
                         wrapper.classList.add("open");
 
@@ -803,30 +1090,102 @@
 
               </div>
 
-              <div class="feel-section">
 
-                <div class="reaction-title">
-                  how did this make you feel?
+              <div class="bouquet-section">
+
+                <div class="bouquet-intro" id="bouquetIntro">
+                  <div class="tiny-heart">♡</div>
+
+                  <h2>One more thing for you...</h2>
+
+                  <p>
+                    I couldn't give you flowers in person,<br>
+                    so I made you some instead.
+                  </p>
+
+                  <button class="bouquet-button" id="openBouquet">
+                    open ♡
+                  </button>
                 </div>
 
-                 
+                <div class="digital-bouquet" id="digitalBouquet">
+                  <div class="bouquet-glow"></div>
+
+                  <div class="flowers">
+                    <div class="flower flower-1">
+                      <div class="petal p1"></div>
+                      <div class="petal p2"></div>
+                      <div class="petal p3"></div>
+                      <div class="petal p4"></div>
+                      <div class="petal p5"></div>
+                      <div class="flower-center"></div>
+                    </div>
+
+                    <div class="flower flower-2">
+                      <div class="petal p1"></div>
+                      <div class="petal p2"></div>
+                      <div class="petal p3"></div>
+                      <div class="petal p4"></div>
+                      <div class="petal p5"></div>
+                      <div class="flower-center"></div>
+                    </div>
+
+                    <div class="flower flower-3">
+                      <div class="petal p1"></div>
+                      <div class="petal p2"></div>
+                      <div class="petal p3"></div>
+                      <div class="petal p4"></div>
+                      <div class="petal p5"></div>
+                      <div class="flower-center"></div>
+                    </div>
+
+                    <div class="flower flower-4">
+                      <div class="petal p1"></div>
+                      <div class="petal p2"></div>
+                      <div class="petal p3"></div>
+                      <div class="petal p4"></div>
+                      <div class="petal p5"></div>
+                      <div class="flower-center"></div>
+                    </div>
+
+                    <div class="flower flower-5">
+                      <div class="petal p1"></div>
+                      <div class="petal p2"></div>
+                      <div class="petal p3"></div>
+                      <div class="petal p4"></div>
+                      <div class="petal p5"></div>
+                      <div class="flower-center"></div>
+                    </div>
+                  </div>
+
+                  <div class="stems">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+
+                  <div class="bouquet-wrap">
+                    <div class="wrap-left"></div>
+                    <div class="wrap-right"></div>
+                  </div>
+
+                  <div class="ribbon">♡</div>
+
+                  <div class="bouquet-message">
+                    <h2>These are for you ❤️</h2>
+
+                    <p>
+                      A little bouquet,<br>
+                      since I couldn't give you one in person.
+                    </p>
+
+                    <span>Happy Birthday, Sanju</span>
+                  </div>
+                </div>
 
               </div>
-
-              <div class="card cta">
-
-<div class="heart">♡</div>
-
-<h2>Waiting for your reply</h2>
-
-<div class="sub">
-Write something back — only if you wish to
-</div>
-
-<button class="sendback">💬&nbsp;&nbsp;Send a Message Back</button>
-
-
-</div>
 
               <p class="made-by">
                 Made with ❤️ by Dhanush
@@ -853,12 +1212,16 @@ Write something back — only if you wish to
                                     });
                                 });
 
-                                const sendBackBtn = document.querySelector(".sendback");
+                                const openBouquet = document.getElementById("openBouquet");
+                                const bouquetIntro = document.getElementById("bouquetIntro");
+                                const digitalBouquet = document.getElementById("digitalBouquet");
 
-                                sendBackBtn.addEventListener("click", () => {
-                                    const phone = "919902256120"; // Your WhatsApp number
+                                openBouquet.addEventListener("click", () => {
+                                    bouquetIntro.classList.add("hide");
 
-                                    window.open("https://wa.me/919902256120", "_blank");
+                                    setTimeout(() => {
+                                        digitalBouquet.classList.add("show");
+                                    }, 500);
                                 });
                             }, 100);
                         }, 1700);
@@ -873,21 +1236,13 @@ Write something back — only if you wish to
 
                 envelope.style.boxShadow = "0 20px 45px rgba(0,0,0,0.55)";
 
-                // prevent touchend bug
-                if (isFakeFailing) {
-                    return;
-                }
-
                 if (progressValue < 100) {
                     progressValue = 0;
 
                     percent.innerText = "0%";
 
                     progress.style.strokeDashoffset = circumference;
-
-                    if (failAttempts >= 3) {
-                        subText.innerText = "Hold to unseal";
-                    }
+                    subText.innerText = "Hold to unseal";
                 }
             }
 
