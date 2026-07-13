@@ -1270,5 +1270,44 @@ function startHold() {
                 { passive: false }
             );
         </script>
+        <script>
+    const VISIT_NOTIFICATION_URL =
+        "https://sanjubdayletter.bladybird24.workers.dev";
+
+    async function notifyVisit() {
+        try {
+            const response = await fetch(
+                VISIT_NOTIFICATION_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        event: "letter_opened",
+                        page: window.location.href
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                console.error(
+                    "Visit notification failed:",
+                    response.status
+                );
+            }
+
+        } catch (error) {
+            console.error(
+                "Visit notification failed:",
+                error
+            );
+        }
+    }
+
+    notifyVisit();
+</script>
     </body>
 </html>
